@@ -18,10 +18,10 @@ int solve(string s[], int n, int k){
     int rem=min(zeros, ones);
     ans=rem/k;
     if(rem%k==0){
-        return ans;
+        return abs(ans);
     }
     else{
-        return ans+1;
+        return abs(ans+1);
     }
     
 }
