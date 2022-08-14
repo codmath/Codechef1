@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	// your code goes here
+	ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+	int t;
+	cin>>t;
+	while(t--){
+	 
+	    long long x, n, y;
+	    //vector<long long> ans(n);
+	    //priority_queue<long long, vector<long long>, greater<long long>> pq;//min heapify
+	    cin>>n>>x>>y;
+	     vector<long long> ans(n);
+	    for(int i=0; i<n; i++){
+	        cin>>ans[i];
+	    }
+	    priority_queue<long long, vector<long long>, greater<long long>> pq;
+	    for(auto it:ans){
+	        pq.push(it);
+	    }
+	    while(y>0){
+	        long long min=pq.top();
+	        if((min^x)>min){
+	            pq.pop();
+	            pq.push((min^x));
+	            y--;
+	        }
+	        else{
+	            if((y&1)==0) break;
+	            else{
+	                pq.pop();
+	                pq.push(min^x);
+	                break;
+	            }
+	        }
+	    }
+	    //put the data into vector data structure
+	    int count=0;
+	    while(!pq.empty()){
+	        ans[count]=pq.top();
+	        pq.pop();
+	        count++;
+	    }
+	    for(auto it: ans){
+	        cout<<it<<" ";
+	    }
+	    cout<<"\n";
+	    
+	}
+	return 0;
+}
